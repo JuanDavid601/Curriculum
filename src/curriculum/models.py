@@ -28,8 +28,13 @@ def get_user(email):
     for User in Users:
         if User.email == email:
             return User
-        else:
-            return None
+    return None
+
+def get_user_by_id(id):
+    for User in Users:
+        if User.id == id:
+            return User
+    return None
 
 
 class CV:
@@ -46,32 +51,30 @@ class CV:
 
         
 
-        def to_dict(self):
-            return {
-                "id" : self.id,
-                "user_id" : self.user_id,
-                "full_name" : self.full_name,
-                "title" : self.title,
-                "about_me" : self.about_me,
-                "experience" : self.experience,
-                "education" : self.education,
-                "skills" : self.skills,
-            }
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "user_id" : self.user_id,
+            "full_name" : self.full_name,
+            "title" : self.title,
+            "about_me" : self.about_me,
+            "experience" : self.experience,
+            "education" : self.education,
+            "skills" : self.skills,
+        }
         
 
 def get_cv_by_user_id(user_id):
     for cv in cvs:
         if cv.user_id == user_id:
             return cv
-        else:
-            return None
+    return None
         
 
 def get_cv_by_id(cv_id):
     for cv in cvs:
         if cv.id == cv_id:
             return cv
-        else:
-            return None
+    return None
             
             

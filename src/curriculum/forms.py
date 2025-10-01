@@ -12,18 +12,18 @@ class LoginForm (FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Length(max=64)])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Recuerdame')
-    submit = SubmitField('Registrar')
+    submit = SubmitField('Iniciar sesion')
 
 class ExperienceForm(FlaskForm):
     Company = StringField('Nombre de la Empresa', validators=[DataRequired(), Length(max=120)]) 
-    Position = TextAreaField('Position', validators=[DataRequired()])
+    Position = StringField('Position', validators=[DataRequired()])
     start_date = DateField('Fecha de inicio', validators= [DataRequired()])
     end_date = DateField('Fecha final')
     description = TextAreaField('Descripcion', validators= [DataRequired(), Length(max=500)])
 
 class EducationForm(FlaskForm):
     institution = StringField('Institucion', validators=[DataRequired(), Length(max=120)]) 
-    degree = TextAreaField('Titulo', validators=[DataRequired()])
+    degree = StringField('Titulo', validators=[DataRequired()])
     start_date = DateField('Fecha de inicio', validators= [DataRequired()])
     end_date = DateField('Fecha final')
     description = TextAreaField('Descripcion', validators= [DataRequired(), Length(max=500)])
@@ -37,7 +37,7 @@ class CVForm(FlaskForm):
     full_name = StringField('Nombre Completo', validators=[DataRequired(), Length(max=64)]) 
     title = StringField('Titulo', validators=[DataRequired(), Length(64)])
     about_me = TextAreaField('Acerca de ti', validators= [DataRequired(), Length(max=250)])
-    experience = FieldList(FormField('Experience', validators=[DataRequired()]))
-    education = FieldList(FormField('Education', validators=[DataRequired()]))
-    skills = FieldList(FormField('Descripcion', validators=[DataRequired()]))
+    experience = FieldList(FormField(ExperienceForm))
+    education = FieldList(FormField(EducationForm))
+    skills = FieldList(FormField(SkillForm))
     submit = SubmitField('Registrar')
